@@ -109,3 +109,11 @@ $background-color : #eff0f2;
     margin-right: 10px;
   }
 }
+
+:host #{"/deep/"} .ui-editor-content {
+  height: 50vh;
+}
+
+:host #{"/deep/"} .tag-textbox {
+  width: 30ch;
+}

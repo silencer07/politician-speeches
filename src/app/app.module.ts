@@ -4,7 +4,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import {FileService} from './file.service';
 import {HttpModule} from '@angular/http';
-import {CalendarModule, SharedModule, TreeModule} from "primeng/primeng";
+import {CalendarModule, EditorModule, SharedModule, TreeModule} from "primeng/primeng";
 import {TagInputModule} from "ng2-tag-input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -19,7 +19,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     TreeModule,
     SharedModule,
     TagInputModule,
-    CalendarModule
+    CalendarModule,
+    EditorModule
   ],
   providers: [
     FileService

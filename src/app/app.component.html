@@ -31,19 +31,22 @@
 
       <div class="form-horizontal">
         <div class="form-group">
-          <label for="author" class="control-label col-sm-1">Author: </label>
-          <div class="col-sm-5">
+          <label for="author" class="control-label col-md-1 col-sm-2 col-xs-2">Author: </label>
+          <div class="col-md-5 col-sm-5 col-xs-10">
             <input type="text" class="form-control" placeholder="Author" id="author"/>
           </div>
-          <label for="date" class="control-label col-sm-1">Date: </label>
-          <p-calendar inputId="date" styleClass="col-sm-2" inputStyleClass="form-control"></p-calendar>
+          <label for="date" class="control-label col-md-1 col-sm-1 col-xs-2">Date: </label>
+          <p-calendar inputId="date" styleClass=" col-md-4 col-sm-4 col-xs-10 speech-editor" inputStyleClass="form-control"></p-calendar>
         </div>
-        <!--<div class="form-group">-->
-        <!--<tag-input [(ngModel)]="keywords" placeholder="hit space for each keyword." theme='bootstrap'-->
-        <!--[separatorKeys]="[',', ' ']" inputClass="form-control"></tag-input>-->
-        <!--</div>-->
-      </div>
-      <div class="form-group">
+        <div class="form-group">
+          <p-editor styleClass="col-xs-12" placeholder="Enter speech here..."></p-editor>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <tag-input [(ngModel)]="keywords" placeholder="add new...." secondaryPlaceholder="hit space/comma for each tag" theme='bootstrap'
+                       [separatorKeys]="[',', ' ']" inputClass="tag-textbox" inputId="keywords"></tag-input>
+          </div>
+        </div>
       </div>
     </div>
   </div>
