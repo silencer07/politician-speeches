@@ -118,6 +118,10 @@ $background-color : #eff0f2;
   width: 30ch;
 }
 
+:host #{"/deep/"} .ui-datepicker {
+  left: initial !important;
+}
+
 .social-media-menu {
   margin-top: 0;
   margin-bottom: 0;
@@ -134,8 +138,10 @@ $background-color : #eff0f2;
       background-color: white;
       text-decoration: none;
       cursor: default;
-      outline: none !important;
+      outline: none;
       box-shadow: none;
     }
   }
 }
+
+
