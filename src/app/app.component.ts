@@ -10,6 +10,7 @@ import {FileService} from "./file.service";
 export class AppComponent implements OnInit{
   files: TreeNode[];
   toggled = true;
+  keywords = '';
 
   constructor(private fileService: FileService, private zone: NgZone) {}
 
