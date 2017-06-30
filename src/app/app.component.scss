@@ -60,10 +60,13 @@ $background-color : #eff0f2;
 
 .sidebar-nav li {
   text-indent: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 5px;
 }
 
 .sidebar-nav > .sidebar-brand {
-  height: 65px;
+  height: 55px;
   font-size: 18px;
   line-height: 60px;
 }
@@ -99,4 +102,10 @@ $background-color : #eff0f2;
 :host #{"/deep/"} .sidebar-tree{
   background-color: $background-color !important;
   border: 0 !important;
+}
+
+.sidebar-search {
+  i {
+    margin-right: 10px;
+  }
 }
