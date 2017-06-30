@@ -58,8 +58,11 @@ $background-color : #eff0f2;
   list-style: none;
 }
 
-.sidebar-nav > .sidebar-brand {
+.sidebar-nav li {
   text-indent: 20px;
+}
+
+.sidebar-nav > .sidebar-brand {
   height: 65px;
   font-size: 18px;
   line-height: 60px;
