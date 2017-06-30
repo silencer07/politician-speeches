@@ -115,7 +115,7 @@ $background-color : #eff0f2;
 }
 
 :host #{"/deep/"} .tag-textbox {
-  width: 30ch;
+  width: 50ch;
 }
 
 :host #{"/deep/"} .ui-datepicker {
@@ -141,6 +141,15 @@ $background-color : #eff0f2;
       outline: none;
       box-shadow: none;
     }
+  }
+}
+
+:host #{"/deep/"} .ui-confirmdialog {
+  .ui-widget-content.ui-dialog-buttonpane{
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
   }
 }
 

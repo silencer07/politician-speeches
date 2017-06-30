@@ -1,5 +1,5 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {MenuItem, TreeModule, TreeNode} from 'primeng/primeng';
+import {ConfirmationService, MenuItem, TreeModule, TreeNode} from 'primeng/primeng';
 import {FileService} from "./file.service";
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   toggled = true;
   keywords = '';
 
-  constructor(private fileService: FileService, private zone: NgZone) {}
+  constructor(private confirmationService: ConfirmationService, private fileService: FileService, private zone: NgZone) {}
 
   ngOnInit() {
     this.fileService.getFiles().subscribe((files) => this.files = files);
@@ -30,4 +30,13 @@ export class AppComponent implements OnInit{
    this.toggled = !this.toggled;
   }
 
+
+  confirmDelete(){
+    this.confirmationService.confirm({
+      message: 'Are you sure that you to delete file "My election speech 2017" ?',
+      accept: () => {
+        // Actual logic to perform a confirmation
+      }
+    });
+  }
 }

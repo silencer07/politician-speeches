@@ -36,14 +36,14 @@
             <input type="text" class="form-control" placeholder="Author" id="author"/>
           </div>
           <label for="date" class="control-label col-md-1 col-sm-1 col-xs-2">Date: </label>
-          <p-calendar inputId="date" styleClass=" col-md-4 col-sm-4 col-xs-10 speech-editor" inputStyleClass="form-control"></p-calendar>
+          <p-calendar inputId="date" styleClass=" col-md-4 col-sm-4 col-xs-10 speech-editor" inputStyleClass="form-control" placeholder="Date of delivery"></p-calendar>
         </div>
         <div class="form-group">
           <p-editor styleClass="col-xs-12" placeholder="Enter speech here..."></p-editor>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <tag-input [(ngModel)]="keywords" placeholder="add new...." secondaryPlaceholder="hit space/comma for each tag" theme='bootstrap'
+            <tag-input [(ngModel)]="keywords" placeholder="add new...." secondaryPlaceholder="Enter tags here. Hit space/comma for each tag" theme='bootstrap'
                        [separatorKeys]="[',', ' ']" inputClass="tag-textbox" inputId="keywords"></tag-input>
           </div>
         </div>
@@ -52,7 +52,13 @@
 
     <div class="row">
       <div class="col-xs-4 col-md-2 col-md-offset-6">
-        <button class="btn btn-block btn-lg btn-danger">Delete</button>
+        <button class="btn btn-block btn-lg btn-danger" (click)="confirmDelete()">Delete</button>
+        <p-confirmDialog header="Confirm deletion" icon="fa fa-question-circle" #cd>
+          <p-footer>
+            <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()" class="ui-button-secondary"></button>
+            <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()" class="ui-button-danger"></button>
+          </p-footer>
+        </p-confirmDialog>
       </div>
       <div class="col-xs-4 col-md-2">
         <button class="btn btn-block btn-lg btn-primary">Save</button>

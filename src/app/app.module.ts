@@ -4,7 +4,10 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import {FileService} from './file.service';
 import {HttpModule} from '@angular/http';
-import {CalendarModule, EditorModule, SharedModule, TieredMenuModule, TreeModule} from "primeng/primeng";
+import {
+  CalendarModule, ConfirmationService, ConfirmDialogModule, EditorModule, SharedModule, TieredMenuModule,
+  TreeModule
+} from "primeng/primeng";
 import {TagInputModule} from "ng2-tag-input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -21,10 +24,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     TagInputModule,
     CalendarModule,
     EditorModule,
-    TieredMenuModule
+    TieredMenuModule,
+    ConfirmDialogModule
   ],
   providers: [
-    FileService
+    FileService,
+    ConfirmationService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
