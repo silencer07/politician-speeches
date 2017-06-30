@@ -117,3 +117,25 @@ $background-color : #eff0f2;
 :host #{"/deep/"} .tag-textbox {
   width: 30ch;
 }
+
+.social-media-menu {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
+
+  li {
+    a {
+      text-align: left;
+    }
+
+    a:hover, a:active, a:visited{
+      background-color: white;
+      text-decoration: none;
+      cursor: default;
+      outline: none !important;
+      box-shadow: none;
+    }
+  }
+}

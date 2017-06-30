@@ -1,5 +1,5 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {TreeModule, TreeNode} from 'primeng/primeng';
+import {MenuItem, TreeModule, TreeNode} from 'primeng/primeng';
 import {FileService} from "./file.service";
 
 @Component({
@@ -29,4 +29,5 @@ export class AppComponent implements OnInit{
   toggleMenu(event: Event) {
    this.toggled = !this.toggled;
   }
+
 }
