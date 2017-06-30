@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {TreeModule, TreeNode} from 'primeng/primeng';
 import {FileService} from "./file.service";
 
@@ -11,10 +11,18 @@ export class AppComponent implements OnInit{
   files: TreeNode[];
   toggled = true;
 
-  constructor(private fileService: FileService) {}
+  constructor(private fileService: FileService, private zone: NgZone) {}
 
   ngOnInit() {
     this.fileService.getFiles().subscribe((files) => this.files = files);
+
+    const mql: MediaQueryList = window.matchMedia('(min-width: 768px)');
+
+    mql.addListener((res: MediaQueryList) => {
+      this.zone.run( () => { // Change the property within the zone, CD will run after
+        this.toggled = res.matches;
+      });
+    });
   }
 
   toggleMenu(event: Event) {
