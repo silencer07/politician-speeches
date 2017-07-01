@@ -13,10 +13,9 @@ export class FileService {
 
   constructor(private http: Http) { }
 
-  getFiles(): Observable<TreeNode[]> {
+  getFiles(): Observable<Array<File>> {
     return this.http.get('assets/data/files.json').map((res: Response) => {
-      const files: Array<File> = res.json().map((datus) => this.createSpeechFileOrFolder(datus, null));
-      return <TreeNode[]> files;
+      return res.json().map((datus) => this.createSpeechFileOrFolder(datus, null));
     });
   }
 
@@ -29,6 +28,7 @@ export class FileService {
 
   private createFolder(data: any, parent: Folder): Folder {
     const folder: Folder = _.merge({}, data);
+    folder.id = 0;
     folder.parent = parent;
 
     if (parent) {

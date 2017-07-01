@@ -2,19 +2,14 @@
   {
     "label": "Election 2017",
     "data": "Files for the said election",
-    "expandedIcon": "fa-folder-open",
-    "collapsedIcon": "fa-folder",
     "children": [
       {
         "label": "Pre-election speeches",
         "data": "Speeches before the campaign",
-        "expandedIcon": "fa-folder-open",
-        "collapsedIcon": "fa-folder",
         "children": [
           {
             "id": 1,
             "label": "Obama care",
-            "icon": "fa-file-word-o",
             "data": "The quick brown fox jumps over the <b>lazy <i>dog</i></b>",
             "author": "Barrack Obama",
             "date": "2017-05-03",
@@ -23,7 +18,6 @@
           {
             "id": 2,
             "label": "Covfefe",
-            "icon": "fa-file-word-o",
             "data": "lorem impsum dolor sit <u>amet</u>",
             "author": "Barrack Obama",
             "date": "2017-06-03",
@@ -34,13 +28,10 @@
       {
         "label": "Post-election speeches",
         "data": "Speeches after the campaign",
-        "expandedIcon": "fa-folder-open",
-        "collapsedIcon": "fa-folder",
         "children": [
           {
             "id": 3,
             "label": "Test foo bar baz",
-            "icon": "fa-file-word-o",
             "data": "Sample data here <b>Hello <i>there nice doge</i></b>",
             "author": "Donald Trump",
             "date": "2017-08-03",
@@ -53,15 +44,12 @@
   {
     "label": "Election 2021",
     "data": "Files for the said election 2",
-    "expandedIcon": "fa-folder-open",
-    "collapsedIcon": "fa-folder",
     "children": [
       {
         "id": 4,
         "label": "Trump cares",
-        "icon": "fa-file-word-o",
         "data": "specto <b>patro<i>num</i></b>",
-        "author": "Donal Trump",
+        "author": "Donald Trump",
         "date": "2017-05-03",
         "tags": "#round2,#trumpcare,#china"
       }
