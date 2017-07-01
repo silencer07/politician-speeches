@@ -21,6 +21,7 @@
             "tags": "#greatamerica,#obamacare,#foobar"
           },
           {
+            "id": 2,
             "label": "Covfefe",
             "icon": "fa-file-word-o",
             "data": "lorem impsum dolor sit <u>amet</u>",
@@ -37,7 +38,7 @@
         "collapsedIcon": "fa-folder",
         "children": [
           {
-            "id": 2,
+            "id": 3,
             "label": "Test foo bar baz",
             "icon": "fa-file-word-o",
             "data": "Sample data here <b>Hello <i>there nice doge</i></b>",
@@ -56,7 +57,7 @@
     "collapsedIcon": "fa-folder",
     "children": [
       {
-        "id": 3,
+        "id": 4,
         "label": "Trump cares",
         "icon": "fa-file-word-o",
         "data": "specto <b>patro<i>num</i></b>",
