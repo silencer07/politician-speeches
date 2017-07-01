@@ -11,12 +11,19 @@ import {File} from "../model/File";
 @Injectable()
 export class FileService {
 
+  private files: Array<File> = [];
+
   constructor(private http: Http) { }
 
   getFiles(): Observable<Array<File>> {
-    return this.http.get('assets/data/files.json').map((res: Response) => {
-      return res.json().map((datus) => this.createSpeechFileOrFolder(datus, null));
-    });
+    if (!this.files.length) {
+      return this.http.get('assets/data/files.json')
+        .map((res: Response) => {
+          this.files = res.json().map((datus) => this.createSpeechFileOrFolder(datus, null));
+          return this.files;
+        });
+    }
+    return Observable.of(this.files);
   }
 
   private createSpeechFile(data: any, folder: Folder): File{
