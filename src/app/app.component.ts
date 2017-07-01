@@ -42,15 +42,15 @@ export class AppComponent implements OnInit {
 
   private convertFileToTreeNode(file: File): TreeNode {
     const node: TreeNode = _.merge({}, file);
-    if (file.id) {
-      node.data = file.id;
-      node.icon = AppComponent.FILE_ICON;
-    } else {
+    if (file.id === 0) {
       node.data = 0;
       node.expandedIcon = AppComponent.OPEN_FOLDER_ICON;
       node.collapsedIcon = AppComponent.COLLAPSED_FOLDER_ICON;
 
       node.children = (file as Folder).children.map((child) => this.convertFileToTreeNode(child));
+    } else {
+      node.data = file.id;
+      node.icon = AppComponent.FILE_ICON;
     }
     return node;
   }

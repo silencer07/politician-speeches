@@ -54,4 +54,33 @@ export class FileService {
     }
   }
 
+  findSpeechFileById(id: number): Observable<SpeechFile> {
+    return this.getFiles().map((files: Array<File>) => {
+      const result: File = files.find((file) => file.id === id);
+
+      if (result) {
+        return result as SpeechFile;
+      }
+
+      return files.filter((file) => file.id === 0)
+        .map((folder) => this.findSpeechFileByIdAndFolder(id, folder as Folder))
+        .find((file) => file != null);
+    })
+  }
+
+  findSpeechFileByIdAndFolder(id: number, folder: Folder): SpeechFile {
+    const result = folder.children.find((child) => child.id === id);
+    if (result) {
+      return result as SpeechFile;
+    }
+
+    const children = folder.children.filter((child) => child.id === 0);
+    if (children.length) {
+      return children.map((child) => this.findSpeechFileByIdAndFolder(id, child as Folder))
+        .find((file) => file != null);
+    }
+
+    return null;
+  }
+
 }

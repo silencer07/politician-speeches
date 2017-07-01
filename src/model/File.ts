@@ -1,7 +1,7 @@
 import {Folder} from "./Folder";
 
 export abstract class File {
-  id: number;
+  id = 0;
   parent: Folder;
   label: string;
   data: string;
