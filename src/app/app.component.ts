@@ -22,8 +22,7 @@ export class AppComponent implements OnInit {
   static COLLAPSED_FOLDER_ICON = "fa-folder";
 
   nodes: TreeNode[];
-  toggled = true;
-  keywords = '';
+  toggled = true; // sidebar
   selectedFile: SpeechFile;
   form: FormGroup;
 
@@ -40,16 +39,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fileService.getFiles().subscribe((files: Array<File>) => {
-      this.nodes = files.map((file) => this.convertFileToTreeNode(file));
-    });
-
+    this.getFiles();
     const mql: MediaQueryList = window.matchMedia('(min-width: 768px)');
 
     mql.addListener((res: MediaQueryList) => {
       this.zone.run( () => { // Change the property within the zone, CD will run after
         this.toggled = res.matches;
       });
+    });
+  }
+
+  private getFiles() {
+    this.fileService.getFiles().subscribe((files: Array<File>) => {
+      this.nodes = files.map((file) => this.convertFileToTreeNode(file));
     });
   }
 
@@ -94,5 +96,15 @@ export class AppComponent implements OnInit {
         // Actual logic to perform a confirmation
       }
     });
+  }
+
+  onQueryType(query: string) {
+    if (query) {
+      this.fileService.search(query).subscribe((files: Array<File>) => {
+        this.nodes = files.map((file) => this.convertFileToTreeNode(file));
+      });
+    } else {
+      this.getFiles();
+    }
   }
 }

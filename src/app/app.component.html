@@ -10,7 +10,7 @@
         <button class="btn btn-info btn-block">New Speech</button>
       </li>
       <li class="form-group has-feedback sidebar-search">
-        <input type="text" class="form-control" placeholder="search file..."/>
+        <input type="text" class="form-control" placeholder="search file..." (input)="onQueryType($event.target.value)"/>
         <i class="fa fa-search form-control-feedback"></i>
       </li>
       <li style="text-indent: 0">

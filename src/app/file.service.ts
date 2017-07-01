@@ -3,7 +3,8 @@ import {TreeNode} from 'primeng/primeng';
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 import {SpeechFile} from "../model/SpeechFile";
 import * as _ from "lodash";
 import {Folder} from "../model/Folder";
@@ -82,6 +83,31 @@ export class FileService {
     }
 
     return null;
+  }
+
+  // title, tag, text, author
+  search(query: string): Observable<Array<File>> {
+    return this.getFiles()
+      .map((files: Array<File>) =>
+        files.slice()
+          .map((file) => _.cloneDeep(file))
+          .filter(file => this.filterByQuery(file, query))
+      );
+  }
+
+  private filterByQuery(file: File, query): boolean {
+    const q = query.toLowerCase();
+    if (file.id) {
+      const speechFile = file as  SpeechFile;
+      return speechFile.label.toLowerCase().includes(q) ||
+        speechFile.tags.filter((tag) => tag.toLowerCase().includes(q)).length > 0 ||
+        speechFile.data.toLowerCase().includes(q) ||
+        speechFile.author.toLowerCase().includes(q);
+    } else {
+      const folder = file as Folder;
+      folder.children = folder.children.filter((child) => this.filterByQuery(child, q));
+      return folder.children.length > 0;
+    }
   }
 
 }
