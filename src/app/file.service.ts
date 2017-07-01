@@ -114,4 +114,10 @@ export class FileService {
     return Observable.of(_.merge(file, modification));
   }
 
+  delete(toDelete: SpeechFile) {
+    const folder = toDelete.parent;
+    const index = folder.children.findIndex((file) => file.id === toDelete.id);
+    folder.children.splice(index, 1);
+  }
+
 }

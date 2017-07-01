@@ -109,11 +109,21 @@ export class AppComponent implements OnInit {
 
   confirmDelete() {
     this.confirmationService.confirm({
-      message: 'Are you sure that you to delete file "My election speech 2017" ?',
+      message: `Are you sure that you to delete file '${this.selectedFile.label}' ?`,
       accept: () => {
-        // Actual logic to perform a confirmation
+        this.fileService.delete(this.selectedFile);
+        this.removeSelectedNode();
+        this.showMessage('Delete successful', `Deletion of file '${this.selectedFile.label}' is successful`, 'warn');
       }
     });
+  }
+
+  removeSelectedNode() {
+    const nodeToRemove = this.selectedNode;
+    const parent = nodeToRemove.parent;
+    const index = parent.children.findIndex((node) => node.data === nodeToRemove.data);
+    parent.children.splice(index, 1);
+    this.selectedNode = parent;
   }
 
   onQueryType(query: string) {
@@ -131,18 +141,21 @@ export class AppComponent implements OnInit {
       this.fileService.modifySpeechFile(this.selectedFile, this.form.value).subscribe((file) => {
         this.selectedFile = file;
         this.patchFormValues(this.selectedFile);
-
-        this.infoMessages.push({
-          severity: 'info',
-          summary: 'Saving successful',
-          detail: `Updating of file '${this.selectedFile.label}' is successful`
-        });
-
-        // hack! there is a bug with growl not automatically dismissing
-        setTimeout(() => this.infoMessages = [], 2000);
+        this.showMessage('Saving successful', `Updating of file '${this.selectedFile.label}' is successful`);
       });
     } else {
       // ask user where to save. allow saving at root folder. expand the said folder
     }
+  }
+
+  private showMessage(title: string, message: string, severity = 'info') {
+    this.infoMessages.push({
+      severity: severity,
+      summary: title,
+      detail: message
+    });
+
+    // hack! there is a bug with growl not automatically dismissing
+    setTimeout(() => this.infoMessages = [], 2000);
   }
 }
