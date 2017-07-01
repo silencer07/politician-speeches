@@ -110,4 +110,8 @@ export class FileService {
     }
   }
 
+  modifySpeechFile(file: SpeechFile, modification: any) {
+    return Observable.of(_.merge(file, modification));
+  }
+
 }

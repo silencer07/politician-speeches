@@ -51,7 +51,7 @@
         </div>
       </form>
     </div>
-
+    <p-growl [(value)]="infoMessages"></p-growl>
     <div class="row">
       <div class="col-xs-4 col-md-2 col-md-offset-6">
         <button class="btn btn-block btn-lg btn-danger" (click)="confirmDelete()">Delete</button>
@@ -63,7 +63,7 @@
         </p-confirmDialog>
       </div>
       <div class="col-xs-4 col-md-2">
-        <button class="btn btn-block btn-lg btn-primary">Save</button>
+        <button class="btn btn-block btn-lg btn-primary" (click)="save()">Save</button>
       </div>
       <div class="col-xs-4 col-md-2">
         <div class="btn-group-justified">

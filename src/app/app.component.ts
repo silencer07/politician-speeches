@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   toggled = true; // sidebar
   selectedFile: SpeechFile;
   form: FormGroup;
+  infoMessages = [];
 
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService,
               private fileService: FileService, private zone: NgZone) {
@@ -55,7 +56,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private convertFileToTreeNode(file: File): TreeNode {
+  private convertFileToTreeNode(file: File, expanded = false): TreeNode {
     const node: TreeNode = _.merge({}, file);
     if (file.id) {
       node.data = file.id;
@@ -65,8 +66,9 @@ export class AppComponent implements OnInit {
       node.selectable = false;
       node.expandedIcon = AppComponent.OPEN_FOLDER_ICON;
       node.collapsedIcon = AppComponent.COLLAPSED_FOLDER_ICON;
+      node.expanded = expanded;
 
-      node.children = (file as Folder).children.map((child) => this.convertFileToTreeNode(child));
+      node.children = (file as Folder).children.map((child) => this.convertFileToTreeNode(child, expanded));
     }
     return node;
   }
@@ -80,12 +82,15 @@ export class AppComponent implements OnInit {
     this.fileService.findSpeechFileById(node.data)
       .subscribe((file: SpeechFile) => {
         this.selectedFile = file;
-
-        this.form.controls.author.patchValue(this.selectedFile.author);
-        this.form.controls.date.patchValue(this.selectedFile.date);
-        this.form.controls.data.patchValue(this.selectedFile.data);
-        this.form.controls.tags.patchValue(this.selectedFile.tags);
+        this.patchFormValues(this.selectedFile);
       });
+  }
+
+  private patchFormValues(file: SpeechFile){
+    this.form.controls.author.patchValue(this.selectedFile.author);
+    this.form.controls.date.patchValue(this.selectedFile.date);
+    this.form.controls.data.patchValue(this.selectedFile.data);
+    this.form.controls.tags.patchValue(this.selectedFile.tags);
   }
 
 
@@ -101,10 +106,30 @@ export class AppComponent implements OnInit {
   onQueryType(query: string) {
     if (query) {
       this.fileService.search(query).subscribe((files: Array<File>) => {
-        this.nodes = files.map((file) => this.convertFileToTreeNode(file));
+        this.nodes = files.map((file) => this.convertFileToTreeNode(file, true));
       });
     } else {
       this.getFiles();
+    }
+  }
+
+  save() {
+    if (this.selectedFile) {
+      this.fileService.modifySpeechFile(this.selectedFile, this.form.value).subscribe((file) => {
+        this.selectedFile = file;
+        this.patchFormValues(this.selectedFile);
+
+        this.infoMessages.push({
+          severity: 'info',
+          summary: 'Saving successful',
+          detail: `Updating of file '${this.selectedFile.label}' is successful`
+        });
+
+        // hack! there is a bug with growl not automatically dismissing
+        setTimeout(() => this.infoMessages = [], 2000);
+      });
+    } else {
+      // ask user where to save. allow saving at root folder. expand the said folder
     }
   }
 }
