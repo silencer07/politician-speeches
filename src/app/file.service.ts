@@ -10,7 +10,7 @@ export class FileService {
   constructor(private http: Http) { }
 
   getFiles(): Observable<TreeNode[]> {
-    return this.http.get('assets/data/files.json').map((res) => <TreeNode[]> res.json().data);
+    return this.http.get('assets/data/files.json').map((res) => <TreeNode[]> res.json());
   }
 
 }
