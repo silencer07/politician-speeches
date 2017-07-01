@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import {FileService} from './file.service';
 import {HttpModule} from '@angular/http';
 import {
-  CalendarModule, ConfirmationService, ConfirmDialogModule, EditorModule, GrowlModule, SharedModule, TieredMenuModule,
+  CalendarModule, ConfirmationService, ConfirmDialogModule, ContextMenuModule, EditorModule, GrowlModule, SharedModule,
+  TieredMenuModule,
   TreeModule
 } from "primeng/primeng";
 import {TagInputModule} from "ng2-tag-input";
@@ -29,7 +30,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     EditorModule,
     TieredMenuModule,
     ConfirmDialogModule,
-    GrowlModule
+    GrowlModule,
+    ContextMenuModule
   ],
   providers: [
     FileService,

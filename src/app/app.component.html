@@ -14,7 +14,9 @@
         <i class="fa fa-search form-control-feedback"></i>
       </li>
       <li style="text-indent: 0">
-        <p-tree [value]="nodes" selectionMode="single" [styleClass]="'sidebar-tree'" (onNodeSelect)="showFileContents($event)"></p-tree>
+        <p-tree [value]="nodes" selectionMode="single" [styleClass]="'sidebar-tree'" [(selection)]="selectedNode"
+                (onNodeSelect)="showFileContents()" [contextMenu]="menu"></p-tree>
+        <p-contextMenu #menu [model]="fileActions"></p-contextMenu>
       </li>
     </ul>
   </div>

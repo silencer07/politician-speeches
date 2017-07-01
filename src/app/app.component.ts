@@ -1,5 +1,5 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {ConfirmationService, TreeNode} from 'primeng/primeng';
+import {ConfirmationService, MenuItem, TreeNode} from 'primeng/primeng';
 import {FileService} from "./file.service";
 import {File} from "../model/File";
 import {SpeechFile} from "../model/SpeechFile";
@@ -24,8 +24,19 @@ export class AppComponent implements OnInit {
   nodes: TreeNode[];
   toggled = true; // sidebar
   selectedFile: SpeechFile;
+  selectedNode: TreeNode;
   form: FormGroup;
   infoMessages = [];
+  fileActions: Array<MenuItem> = [
+    {
+      label: 'Delete',
+      icon: 'fa-close'
+    },
+    {
+      label: 'Restore',
+      icon: 'fa-undo',
+    }
+  ];
 
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService,
               private fileService: FileService, private zone: NgZone) {
@@ -63,7 +74,6 @@ export class AppComponent implements OnInit {
       node.icon = AppComponent.FILE_ICON;
     } else {
       node.data = 0;
-      node.selectable = false;
       node.expandedIcon = AppComponent.OPEN_FOLDER_ICON;
       node.collapsedIcon = AppComponent.COLLAPSED_FOLDER_ICON;
       node.expanded = expanded;
@@ -77,13 +87,16 @@ export class AppComponent implements OnInit {
     this.toggled = !this.toggled;
   }
 
-  showFileContents(event) {
-    const node = event.node as TreeNode;
-    this.fileService.findSpeechFileById(node.data)
-      .subscribe((file: SpeechFile) => {
-        this.selectedFile = file;
-        this.patchFormValues(this.selectedFile);
-      });
+  showFileContents() {
+    if (this.selectedNode.data !== 0) {
+      this.fileService.findSpeechFileById(this.selectedNode.data)
+        .subscribe((file: SpeechFile) => {
+          this.selectedFile = file;
+          this.patchFormValues(this.selectedFile);
+        });
+    } else {
+      this.selectedNode.expanded = !this.selectedNode.expanded;
+    }
   }
 
   private patchFormValues(file: SpeechFile){
