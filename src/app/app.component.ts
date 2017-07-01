@@ -1,11 +1,12 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {ConfirmationService, MenuItem, TreeModule, TreeNode} from 'primeng/primeng';
+import {ConfirmationService, TreeNode} from 'primeng/primeng';
 import {FileService} from "./file.service";
 import {File} from "../model/File";
 import {SpeechFile} from "../model/SpeechFile";
 import {Folder} from "../model/Folder";
 
 import * as _ from "lodash"
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 const stringify = require('json-stringify-safe');
 
@@ -23,8 +24,20 @@ export class AppComponent implements OnInit {
   nodes: TreeNode[];
   toggled = true;
   keywords = '';
+  selectedFile: SpeechFile;
+  form: FormGroup;
 
-  constructor(private confirmationService: ConfirmationService, private fileService: FileService, private zone: NgZone) {}
+  constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService,
+              private fileService: FileService, private zone: NgZone) {
+
+    this.form = formBuilder.group({
+      author: ['', Validators.required],
+      date: ['', Validators.required],
+      data: ['', Validators.required],
+      tags: ['']
+    });
+
+  }
 
   ngOnInit() {
     this.fileService.getFiles().subscribe((files: Array<File>) => {
@@ -42,21 +55,35 @@ export class AppComponent implements OnInit {
 
   private convertFileToTreeNode(file: File): TreeNode {
     const node: TreeNode = _.merge({}, file);
-    if (file.id === 0) {
+    if (file.id) {
+      node.data = file.id;
+      node.icon = AppComponent.FILE_ICON;
+    } else {
       node.data = 0;
+      node.selectable = false;
       node.expandedIcon = AppComponent.OPEN_FOLDER_ICON;
       node.collapsedIcon = AppComponent.COLLAPSED_FOLDER_ICON;
 
       node.children = (file as Folder).children.map((child) => this.convertFileToTreeNode(child));
-    } else {
-      node.data = file.id;
-      node.icon = AppComponent.FILE_ICON;
     }
     return node;
   }
 
   toggleMenu(event: Event) {
-   this.toggled = !this.toggled;
+    this.toggled = !this.toggled;
+  }
+
+  showFileContents(event) {
+    const node = event.node as TreeNode;
+    this.fileService.findSpeechFileById(node.data)
+      .subscribe((file: SpeechFile) => {
+        this.selectedFile = file;
+
+        this.form.controls.author.patchValue(this.selectedFile.author);
+        this.form.controls.date.patchValue(this.selectedFile.date);
+        this.form.controls.data.patchValue(this.selectedFile.data);
+        this.form.controls.tags.patchValue(this.selectedFile.tags);
+      });
   }
 
 

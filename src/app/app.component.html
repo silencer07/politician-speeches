@@ -14,7 +14,7 @@
         <i class="fa fa-search form-control-feedback"></i>
       </li>
       <li style="text-indent: 0">
-        <p-tree [value]="nodes" [styleClass]="'sidebar-tree'"></p-tree>
+        <p-tree [value]="nodes" selectionMode="single" [styleClass]="'sidebar-tree'" (onNodeSelect)="showFileContents($event)"></p-tree>
       </li>
     </ul>
   </div>
@@ -29,25 +29,27 @@
         </div>
       </nav>
 
-      <div class="form-horizontal">
+      <form [formGroup]="form" class="form-horizontal">
         <div class="form-group">
           <label for="author" class="control-label col-md-1 col-sm-2 col-xs-2">Author: </label>
           <div class="col-md-5 col-sm-5 col-xs-10">
-            <input type="text" class="form-control" placeholder="Author" id="author"/>
+            <input type="text" formControlName="author" class="form-control" placeholder="Author" id="author"/>
           </div>
           <label for="date" class="control-label col-md-1 col-sm-1 col-xs-2">Date: </label>
-          <p-calendar inputId="date" styleClass=" col-md-4 col-sm-4 col-xs-10 speech-editor" inputStyleClass="form-control" placeholder="Date of delivery"></p-calendar>
+          <p-calendar inputId="date" dateFormat="yy-mm-dd" formControlName="date"
+                      styleClass=" col-md-4 col-sm-4 col-xs-10 speech-editor"
+                      inputStyleClass="form-control" placeholder="Date of delivery"></p-calendar>
         </div>
         <div class="form-group">
-          <p-editor styleClass="col-xs-12" placeholder="Enter speech here..."></p-editor>
+          <p-editor formControlName="data" styleClass="col-xs-12" placeholder="Enter speech here..."></p-editor>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <tag-input [(ngModel)]="keywords" placeholder="add new...." secondaryPlaceholder="Enter tags here. Hit space/comma for each tag" theme='bootstrap'
+            <tag-input formControlName="tags" placeholder="add new...." secondaryPlaceholder="Enter tags here. Hit space/comma for each tag" theme='bootstrap'
                        [separatorKeys]="[',', ' ']" inputClass="tag-textbox" inputId="keywords"></tag-input>
           </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <div class="row">

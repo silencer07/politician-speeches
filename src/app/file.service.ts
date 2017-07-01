@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {TreeNode} from 'primeng/primeng';
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map'
 import {SpeechFile} from "../model/SpeechFile";
 import * as _ from "lodash";

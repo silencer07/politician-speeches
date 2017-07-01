@@ -13,7 +13,11 @@
             "data": "The quick brown fox jumps over the <b>lazy <i>dog</i></b>",
             "author": "Barrack Obama",
             "date": "2017-05-03",
-            "tags": "#greatamerica,#obamacare,#foobar"
+            "tags": [
+              "#greatamerica",
+              "#obamacare",
+              "#foobar"
+            ]
           },
           {
             "id": 2,
@@ -21,7 +25,11 @@
             "data": "lorem impsum dolor sit <u>amet</u>",
             "author": "Barrack Obama",
             "date": "2017-06-03",
-            "tags": "#covfefe,#typo,#barbaz"
+            "tags": [
+              "#covfefe",
+              "#typo",
+              "#barbaz"
+            ]
           }
         ]
       },
@@ -35,7 +43,11 @@
             "data": "Sample data here <b>Hello <i>there nice doge</i></b>",
             "author": "Donald Trump",
             "date": "2017-08-03",
-            "tags": "#iampresident,#northkorea,#hiho"
+            "tags": [
+              "#iampresident",
+              "#northkorea",
+              "#hiho"
+            ]
           }
         ]
       }
@@ -51,7 +63,11 @@
         "data": "specto <b>patro<i>num</i></b>",
         "author": "Donald Trump",
         "date": "2017-05-03",
-        "tags": "#round2,#trumpcare,#china"
+        "tags": [
+          "#round2",
+          "#trumpcare",
+          "#china"
+        ]
       }
     ]
   }
