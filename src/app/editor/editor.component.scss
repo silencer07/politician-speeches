@@ -1,0 +1,42 @@
+.social-media-menu {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
+
+  li {
+    a {
+      text-align: left;
+    }
+
+    a:hover, a:active, a:visited{
+      background-color: white;
+      text-decoration: none;
+      cursor: default;
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+:host #{"/deep/"} .ui-confirmdialog {
+  .ui-widget-content.ui-dialog-buttonpane{
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+:host #{"/deep/"} .ui-editor-content {
+  height: 50vh;
+}
+
+:host #{"/deep/"} .tag-textbox {
+  width: 50ch;
+}
+
+:host #{"/deep/"} .ui-datepicker {
+  left: initial !important;
+}
