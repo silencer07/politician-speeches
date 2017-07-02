@@ -144,7 +144,7 @@ export class AppComponent implements OnInit {
         this.showMessage('Saving successful', `Updating of file '${this.selectedFile.label}' is successful`);
       });
     } else {
-      // ask user where to save. allow saving at root folder. expand the said folder
+      this.showMessage("Not implemented", "Saving new file is not yet implemented");
     }
   }
 
@@ -161,6 +161,7 @@ export class AppComponent implements OnInit {
 
   clearSelectedFile() {
     this.selectedFile = null;
+    this.selectedNode = null;
     this.form.reset();
   }
 }
