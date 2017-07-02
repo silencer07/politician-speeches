@@ -79,7 +79,7 @@ export class EditorSidebarComponent implements OnInit {
     if (this.selectedNode.data === 0) {
       this.selectedNode.expanded = !this.selectedNode.expanded;
     } else {
-      this.onSpeechFileSelect.emit();
+      this.onSpeechFileSelect.emit(this.selectedNode.data);
     }
   }
 

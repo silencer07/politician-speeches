@@ -13,11 +13,13 @@ import {TagInputModule} from "ng2-tag-input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EditorSidebarComponent } from './editor-sidebar/editor-sidebar.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditorSidebarComponent
+    EditorSidebarComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
