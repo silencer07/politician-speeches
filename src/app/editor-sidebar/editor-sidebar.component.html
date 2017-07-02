@@ -1,0 +1,19 @@
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      Politician Speeches
+    </li>
+    <li>
+      <button class="btn btn-info btn-block" (click)="newButtonClicked()">New Speech</button>
+    </li>
+    <li class="form-group has-feedback sidebar-search">
+      <input type="text" class="form-control" placeholder="search file..." (input)="onQueryType($event.target.value)"/>
+      <i class="fa fa-search form-control-feedback"></i>
+    </li>
+    <li style="text-indent: 0">
+      <p-tree [value]="nodes" selectionMode="single" [styleClass]="'sidebar-tree'" [(selection)]="selectedNode"
+              (onNodeSelect)="onFileSelect()" [contextMenu]="menu"></p-tree>
+      <p-contextMenu #menu [model]="fileActions"></p-contextMenu>
+    </li>
+  </ul>
+</div>
