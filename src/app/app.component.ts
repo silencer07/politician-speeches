@@ -158,4 +158,9 @@ export class AppComponent implements OnInit {
     // hack! there is a bug with growl not automatically dismissing
     setTimeout(() => this.infoMessages = [], 2000);
   }
+
+  clearSelectedFile() {
+    this.selectedFile = null;
+    this.form.reset();
+  }
 }
