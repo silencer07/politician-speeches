@@ -43,4 +43,9 @@ export class AppComponent implements OnInit {
         this.selectedFile = file;
       });
   }
+
+  onDeleteSuccess(file: SpeechFile) {
+    this.sidebar.removeSelectedNode();
+    this.selectedFile = null;
+  }
 }

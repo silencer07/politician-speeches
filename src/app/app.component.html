@@ -7,7 +7,7 @@
         <a (click)="toggleMenu($event)"><i class="fa fa-bars fa-2x"></i></a>
       </div>
     </nav>
-    <app-editor (onDeleteSuccess)="sidebar.removeSelectedNode()" [(file)]="selectedFile" #editor></app-editor>
+    <app-editor (onDeleteSuccess)="onDeleteSuccess($event)" [(file)]="selectedFile" #editor></app-editor>
   </div>
   <!-- /#page-content-wrapper -->
 

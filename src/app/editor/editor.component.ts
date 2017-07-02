@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ConfirmationService} from "primeng/primeng";
 import {FileService} from "../file.service";
@@ -17,6 +17,7 @@ export class EditorComponent implements OnChanges {
   @Input()
   file: SpeechFile;
 
+  @Output()
   onDeleteSuccess: EventEmitter<SpeechFile> = new EventEmitter<SpeechFile>();
 
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService,
@@ -41,6 +42,7 @@ export class EditorComponent implements OnChanges {
       accept: () => {
         this.fileService.delete(this.file);
         this.showMessage('Delete successful', `Deletion of file '${this.file.label}' is successful`, 'warn');
+        this.reset();
 
         this.onDeleteSuccess.emit(this.file);
       }
